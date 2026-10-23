@@ -240,6 +240,36 @@ html {
   transition: all 0.2s ease;
 }
 
+/* daisyUI 5 compatibility: v4 form layout classes (.form-control, .label layout,
+   .label-text) were removed/changed in daisyUI 5, but the app's forms still use
+   that markup. Recreate the v4 layout so labels stack above inputs and all
+   fields align consistently across forms. */
+.form-control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.form-control > .label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  height: auto;
+  padding: 0;
+  white-space: normal;
+}
+
+.form-control > .input,
+.form-control > .textarea,
+.form-control > .select {
+  width: 100%;
+}
+
+.label-text {
+  display: block;
+}
+
 /* Gradient backgrounds */
 .gradient-bg {
   background: linear-gradient(135deg, #78A083 0%, #50727B 50%, #344955 100%);
