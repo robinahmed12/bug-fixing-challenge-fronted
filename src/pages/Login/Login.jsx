@@ -28,8 +28,9 @@ export default function Login() {
             const res = await loginUser(form);
             saveToken(res.data.token);
 
-            navigate("/");
-            window.location.reload();
+            // Role-aware redirect: admin -> /admin, everyone else -> /student
+            const role = res.data.user?.role;
+            navigate(role === "admin" ? "/admin" : "/student");
         } catch (err) {
             setError(err.response?.data?.message || "Login failed. Please check your credentials.");
         } finally {
